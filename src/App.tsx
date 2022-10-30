@@ -1,24 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ToastContainer } from "react-toastify";
+import "./App.css";
+import Register from "./components/Register";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Login from "./components/Login";
+import Home from "./components/Home";
+import Profile from "./components/Profile";
+import Cards from "./components/Cards";
+import AddCard from "./components/AddCard";
+import EditCard from "./components/EditCard";
+import BizRegister from "./components/BizRegister";
+import About from "./components/About";
+// import Cart from "./components/Cart";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ToastContainer theme="dark" />
+
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/bizregister" element={<BizRegister />} />
+
+          <Route path="/home" element={<Home />} />
+          <Route path="/cards">
+            <Route index element={<Cards />} />
+            <Route path="add" element={<AddCard />} />
+            {/* Editing product by its ID */}
+            <Route path="edit/:id" element={<EditCard />} />
+          </Route>
+          <Route path="/about" element={<About />} />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
